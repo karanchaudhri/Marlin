@@ -31,7 +31,7 @@
 
   #include <Arduino.h>
 
-  #if !defined(CLCD_USE_SOFT_SPI)
+  #ifndef CLCD_USE_SOFT_SPI
     #include <SPI.h>
   #endif
 
@@ -208,7 +208,8 @@
   #define SWITCH_ENABLED_    1
   #define ENABLED(b)         _CAT(SWITCH_ENABLED_, b)
   #define DISABLED(b)        !ENABLED(b)
-  #define ANY(A,B)           ENABLED(A) || ENABLED(B)
+  #define ANY(A,B)           (ENABLED(A) || ENABLED(B))
+  #define BOTH(A,B)          (ENABLED(A) && ENABLED(B))
 
   // Remove compiler warning on an unused variable
   #ifndef UNUSED
